@@ -5,7 +5,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class ColorActivity extends AppCompatActivity {
 
@@ -15,12 +18,30 @@ public class ColorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Spinner spinner = findViewById(R.id.spinner);
-        String[] colors = {"RED", "BLUE", "GREEN","CYAN", "YELLOW", "GRAY","MAGENTA"};
-        ConstraintLayout layout = findViewById(R.id.layout);
+        final Spinner spinner = findViewById(R.id.spinner);
 
-        ColorAdapter adapter = new ColorAdapter(ColorActivity.this, layout, colors);
+        String[] colors = {"WHITE", "RED", "BLUE", "GREEN","CYAN", "YELLOW", "GRAY", "MAGENTA","TEAL", "AQUA", "NAVY", "FUCHSIA"};
+        final ConstraintLayout layout = findViewById(R.id.layout);
+
+        ColorAdapter adapter = new ColorAdapter(ColorActivity.this, colors);
+
+
 
         spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected = (String) parent.getItemAtPosition(position);
+                view.setBackgroundColor(Color.parseColor("white"));
+                layout.setBackgroundColor(Color.parseColor(selected));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 }

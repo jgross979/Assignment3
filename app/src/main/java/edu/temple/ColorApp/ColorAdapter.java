@@ -14,12 +14,10 @@ public class ColorAdapter extends BaseAdapter {
 
     String[] colors;
     Context context;
-    ConstraintLayout layout;
 
-    public ColorAdapter(Context context, ConstraintLayout layout, String... colors){
+    public ColorAdapter(Context context, String... colors){
         this.colors = colors;
         this.context = context;
-        this.layout = layout;
     }
 
     @Override
@@ -52,16 +50,7 @@ public class ColorAdapter extends BaseAdapter {
 
         text.setText(color);
         text.setBackgroundColor(Color.parseColor(color));
-
-
-        text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                text.setBackgroundColor(Color.parseColor("white"));
-                layout.setBackgroundColor(Color.parseColor(color));
-
-            }
-        });
+        text.setTextSize(25);
 
         return text;
     }
